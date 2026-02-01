@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- THEME VARIABLES ---------- */
+
+@keyframes shine {
+  from {
+    transform: translateX(-140%);
+  }
+  to {
+    transform: translateX(140%);
+  }
+}
+
+@keyframes jello-smooth {
+  0%   { transform: scale3d(1,1,1); }
+  30%  { transform: scale3d(1.08,0.94,1); }
+  45%  { transform: scale3d(0.96,1.05,1); }
+  60%  { transform: scale3d(1.04,0.98,1); }
+  75%  { transform: scale3d(0.99,1.02,1); }
+  100% { transform: scale3d(1,1,1); }
+}
+
+.name-jello {
+  display: inline-block;
+  will-change: transform;
+}
+
+.name-jello:hover {
+  animation: jello-smooth 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.animate-shimmer {
+  animation: shimmer 6s linear infinite;
+}
+
+
+/* Light mode */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --muted: 215 16% 47%;
+  --primary: 217 91% 60%;
+  --border: 214 32% 91%;
+}
+
+/* Dark mode */
+.dark {
+  --background: 222 47% 4%;
+  --foreground: 210 40% 98%;
+  --muted: 215 20% 65%;
+  --primary: 217 91% 60%;
+  --border: 217 19% 27%;
+}
+
+/* ---------- BASE STYLES ---------- */
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav a {
+  letter-spacing: 0.06em;
+}
+
+header a {
+  letter-spacing: 0.02em;
+}
+/* CTA Glow Effect */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.25);
+  }
+}
+
+.cta-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.cta-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    rgba(255, 255, 255, 0.35),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.cta-glow:hover::before {
+  opacity: 1;
+}
+
+.cta-glow-idle {
+  animation: glowPulse 3.2s ease-in-out infinite;
+}
+
+/* ================================
+   SLIDE-UP HOVER EFFECT (CTA + SOCIAL)
+   ================================ */
+
+.cta-slide,
+.social-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cta-slide::before,
+.social-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.cta-slide:hover::before,
+.social-slide:hover::before {
+  transform: translateY(0);
+}
+
+.cta-slide span,
+.cta-slide svg,
+.social-slide svg {
+  transition: color 0.35s ease;
+}
+/* ================================
+   SOCIAL ICON SLIDE-UP HOVER
+   ================================ */
+
+.social-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.social-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.social-slide:hover::before {
+  transform: translateY(0);
+}
+
+.social-slide svg {
+  transition: color 0.35s ease;
+}
+
+/* ===============================
+   SOCIAL ICONS (PRO LEVEL)
+   =============================== */
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* subtle lift */
+.social-icon:hover {
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Brand hover colors */
+.social-icon.facebook:hover {
+  background: #4267b2;
+  border-color: #4267b2;
+}
+
+.social-icon.twitter:hover {
+  background: #1da1f2;
+  border-color: #1da1f2;
+}
+
+.social-icon.linkedin:hover {
+  background: #0077b5;
+  border-color: #0077b5;
+}
+
+.social-icon.google:hover {
+  background: #db4437;
+  border-color: #db4437;
+}
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
