@@ -41,7 +41,7 @@ export default function Footer() {
             {/* SOCIALS */}
             <div className="mt-4 flex items-center gap-4">
               <a
-                href="https://github.com/"
+                href="https://github.com/UDVarun"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition hover:text-foreground"
@@ -49,7 +49,7 @@ export default function Footer() {
                 <Github size={18} />
               </a>
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/varunud"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition hover:text-foreground"
