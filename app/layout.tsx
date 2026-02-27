@@ -1,9 +1,9 @@
-"use client";
-
-import { useState } from "react";
-import Loader from "@/components/loader/Loader";
 import "@/styles/globals.css";
-import { motion } from "framer-motion";
+
+export const metadata = {
+  title: "Varun UD Portfolio",
+  description: "Modern Developer Portfolio",
+};
 
 export default function RootLayout({
   children,
@@ -11,42 +11,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  const [loading, setLoading] = useState(true);
-
   return (
 
-    <html lang="en">
+<html lang="en">
 
-      <body className="bg-black text-white overflow-x-hidden">
+<body className="bg-black text-white overflow-x-hidden">
 
-        {loading && (
-          <Loader onFinish={() => setLoading(false)} />
-        )}
+{children}
 
-        {!loading && (
+</body>
 
-          <motion.div
-
-            initial={{ opacity: 0, scale: 0.98 }}
-
-            animate={{ opacity: 1, scale: 1 }}
-
-            transition={{
-              duration: 1,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-
-          >
-
-            {children}
-
-          </motion.div>
-
-        )}
-
-      </body>
-
-    </html>
+</html>
 
   );
+
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 interface LoaderProps {
-  onFinish: () => void;
+  onFinish?: () => void; // optional to avoid crash
 }
 
 export default function Loader({ onFinish }: LoaderProps) {
@@ -26,7 +26,11 @@ export default function Loader({ onFinish }: LoaderProps) {
         clearInterval(interval);
 
         setTimeout(() => {
-          onFinish();
+
+          if(onFinish){
+            onFinish();
+          }
+
         }, 600);
 
       }
@@ -43,18 +47,16 @@ export default function Loader({ onFinish }: LoaderProps) {
     <motion.div
 
       initial={{ opacity: 1 }}
-
       animate={{ opacity: progress === 100 ? 0 : 1 }}
-
       transition={{ duration: 0.9 }}
 
       className="
-      fixed 
-      inset-0 
-      z-[9999] 
-      bg-black 
-      flex 
-      items-center 
+      fixed
+      inset-0
+      z-[9999]
+      bg-black
+      flex
+      items-center
       justify-center
       overflow-hidden
       "
@@ -63,12 +65,12 @@ export default function Loader({ onFinish }: LoaderProps) {
 
       <div className="text-center">
 
+
         {/* NAME */}
 
         <motion.h1
 
           initial={{ y: 40, opacity: 0 }}
-
           animate={{ y: 0, opacity: 1 }}
 
           transition={{
@@ -77,16 +79,18 @@ export default function Loader({ onFinish }: LoaderProps) {
           }}
 
           className="
-          text-white 
-          text-5xl 
+          text-white
+          text-5xl
           md:text-6xl
-          font-semibold 
+          font-semibold
           tracking-[0.25em]
           drop-shadow-[0_0_25px_rgba(255,255,255,0.35)]
           "
 
         >
+
           VARUN UD
+
         </motion.h1>
 
 
@@ -95,7 +99,6 @@ export default function Loader({ onFinish }: LoaderProps) {
         <motion.p
 
           initial={{ opacity: 0 }}
-
           animate={{ opacity: 1 }}
 
           transition={{
@@ -104,7 +107,7 @@ export default function Loader({ onFinish }: LoaderProps) {
           }}
 
           className="
-          text-gray-400 
+          text-gray-400
           mt-4
           tracking-widest
           text-sm
@@ -112,7 +115,9 @@ export default function Loader({ onFinish }: LoaderProps) {
           "
 
         >
+
           Creative Developer
+
         </motion.p>
 
 
@@ -138,6 +143,7 @@ export default function Loader({ onFinish }: LoaderProps) {
         </div>
 
 
+
         {/* PERCENTAGE */}
 
         <motion.div
@@ -154,9 +160,11 @@ export default function Loader({ onFinish }: LoaderProps) {
 
         </motion.div>
 
+
       </div>
 
     </motion.div>
 
   );
+
 }

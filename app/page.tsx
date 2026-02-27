@@ -7,46 +7,64 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CertificatesTimeline from "./components/CertificatesTimeline";
 
+import PageWrapper from "@/components/PageWrapper";
+
 export default function Page() {
-  return (
-    <>
-      {/* NAVBAR */}
-      <Navbar />
 
-      <main className="relative overflow-x-hidden">
-        {/* HERO SECTION */}
-        <section id="home">
-          <Hero />
-        </section>
+return (
 
-        {/* ABOUT SECTION */}
-        <section id="about">
-          <About />
-        </section>
+<PageWrapper>
 
-        {/* EXPERIENCE SECTION */}
-        <section id="experience">
-          <Experience />
-        </section>
-        
-          {/* CERTIFICATES SECTION (Horizontal Scroll) */}
-        <section id="certificates">
-          <CertificatesTimeline />
-        </section>
+{/* NAVBAR */}
+<Navbar />
+
+<main className="relative overflow-x-hidden">
+
+{/* HERO SECTION */}
+<section id="home">
+<Hero />
+</section>
 
 
-        {/* PROJECTS SECTION */}
-        <section id="projects">
-          <Projects />
-        </section>
+{/* ABOUT SECTION */}
+<section id="about">
+<About />
+</section>
 
-        {/* CONTACT SECTION */}
-        <section id="contact">
-          <Contact />
-        </section>
-      </main>
-      {/* FOOTER */}
-      <Footer />
-    </>
-  );
+
+{/* EXPERIENCE SECTION */}
+<section id="experience">
+<Experience />
+</section>
+
+
+{/* CERTIFICATES SECTION */}
+<section id="certificates">
+<CertificatesTimeline />
+</section>
+
+
+{/* PROJECTS SECTION */}
+<section id="projects">
+<Projects />
+</section>
+
+
+{/* CONTACT SECTION */}
+<section id="contact">
+<Contact />
+</section>
+
+
+</main>
+
+
+{/* FOOTER */}
+<Footer />
+
+
+</PageWrapper>
+
+);
+
 }
