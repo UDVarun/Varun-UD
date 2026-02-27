@@ -2,73 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---------- THEME VARIABLES ---------- */
 
-@keyframes shine {
-  from {
-    transform: translateX(-140%);
-  }
-  to {
-    transform: translateX(140%);
-  }
+/* ===================================
+   AWWWARDS MOTION VARIABLES
+=================================== */
+
+:root {
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
 }
 
-@keyframes jello-smooth {
-  0%   { transform: scale3d(1,1,1); }
-  30%  { transform: scale3d(1.08,0.94,1); }
-  45%  { transform: scale3d(0.96,1.05,1); }
-  60%  { transform: scale3d(1.04,0.98,1); }
-  75%  { transform: scale3d(0.99,1.02,1); }
-  100% { transform: scale3d(1,1,1); }
-}
 
-.name-jello {
-  display: inline-block;
-  will-change: transform;
-}
-
-.name-jello:hover {
-  animation: jello-smooth 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-.animate-shimmer {
-  animation: shimmer 6s linear infinite;
-}
-
+/* ===================================
+   THEME VARIABLES
+=================================== */
 
 /* Light mode */
+
 :root {
+
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
   --muted: 215 16% 47%;
   --primary: 217 91% 60%;
   --border: 214 32% 91%;
+
 }
 
 /* Dark mode */
+
 .dark {
+
   --background: 222 47% 4%;
   --foreground: 210 40% 98%;
   --muted: 215 20% 65%;
   --primary: 217 91% 60%;
   --border: 217 19% 27%;
+
 }
 
-/* ---------- BASE STYLES ---------- */
 
-body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-}
+
+/* ===================================
+   BASE STYLES
+=================================== */
 
 html {
   scroll-behavior: smooth;
 }
+
+body {
+
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+  
+
+}
+
+
+/* Smooth Selection */
+
+::selection {
+
+  background: white;
+  color: black;
+
+}
+
+
+
+/* Premium Link Spacing */
 
 nav a {
   letter-spacing: 0.06em;
@@ -77,157 +89,365 @@ nav a {
 header a {
   letter-spacing: 0.02em;
 }
-/* CTA Glow Effect */
+
+
+
+/* ===================================
+   SCROLL PERFORMANCE OPTIMIZATION
+=================================== */
+
+* {
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+}
+
+
+/* Prevent animation lag */
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+
+
+/* ===================================
+   NAME JELLO ANIMATION
+=================================== */
+
+@keyframes jello-smooth {
+
+  0% { transform: scale3d(1,1,1); }
+
+  30% { transform: scale3d(1.08,0.94,1); }
+
+  45% { transform: scale3d(0.96,1.05,1); }
+
+  60% { transform: scale3d(1.04,0.98,1); }
+
+  75% { transform: scale3d(0.99,1.02,1); }
+
+  100% { transform: scale3d(1,1,1); }
+
+}
+
+.name-jello {
+
+  display:inline-block;
+  will-change:transform;
+
+}
+
+.name-jello:hover {
+
+  animation:jello-smooth 0.9s var(--ease-smooth);
+
+}
+
+
+
+/* ===================================
+   SHIMMER EFFECT
+=================================== */
+
+@keyframes shimmer {
+
+  0% { background-position:0% 50%; }
+
+  100% { background-position:200% 50%; }
+
+}
+
+.animate-shimmer {
+
+  animation:shimmer 6s linear infinite;
+
+}
+
+
+
+/* ===================================
+   CTA GLOW EFFECT
+=================================== */
+
 @keyframes glowPulse {
+
   0% {
-    box-shadow: 0 0 0px rgba(255, 255, 255, 0.25);
+
+    box-shadow:0 0 0px rgba(255,255,255,0.25);
+
   }
+
   50% {
-    box-shadow: 0 0 22px rgba(255, 255, 255, 0.45);
+
+    box-shadow:0 0 22px rgba(255,255,255,0.45);
+
   }
+
   100% {
-    box-shadow: 0 0 0px rgba(255, 255, 255, 0.25);
+
+    box-shadow:0 0 0px rgba(255,255,255,0.25);
+
   }
+
 }
 
 .cta-glow {
-  position: relative;
-  isolation: isolate;
+
+  position:relative;
+  isolation:isolate;
+
 }
 
 .cta-glow::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: radial-gradient(
+
+  content:"";
+
+  position:absolute;
+
+  inset:-2px;
+
+  border-radius:inherit;
+
+  background:
+
+  radial-gradient(
+
     60% 60% at 50% 50%,
-    rgba(255, 255, 255, 0.35),
+
+    rgba(255,255,255,0.35),
+
     transparent 70%
+
   );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
+
+  opacity:0;
+
+  transition:opacity .3s var(--ease-premium);
+
+  z-index:-1;
+
 }
 
 .cta-glow:hover::before {
-  opacity: 1;
+
+  opacity:1;
+
 }
 
 .cta-glow-idle {
-  animation: glowPulse 3.2s ease-in-out infinite;
+
+  animation:glowPulse 3.2s ease-in-out infinite;
+
 }
 
-/* ================================
-   SLIDE-UP HOVER EFFECT (CTA + SOCIAL)
-   ================================ */
+
+
+/* ===================================
+   CTA + SOCIAL SLIDE EFFECT
+=================================== */
 
 .cta-slide,
 .social-slide {
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
+
+  position:relative;
+
+  overflow:hidden;
+
+  z-index:0;
+
 }
 
 .cta-slide::before,
 .social-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: currentColor;
-  transform: translateY(100%);
-  transition: transform 0.35s ease;
-  z-index: -1;
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:currentColor;
+
+  transform:translateY(100%);
+
+  transition:transform .4s var(--ease-premium);
+
+  z-index:-1;
+
 }
 
 .cta-slide:hover::before,
 .social-slide:hover::before {
-  transform: translateY(0);
+
+  transform:translateY(0);
+
 }
 
 .cta-slide span,
 .cta-slide svg,
 .social-slide svg {
-  transition: color 0.35s ease;
-}
-/* ================================
-   SOCIAL ICON SLIDE-UP HOVER
-   ================================ */
 
-.social-slide {
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
+  transition:color .35s var(--ease-premium);
+
 }
 
-.social-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: currentColor;
-  transform: translateY(100%);
-  transition: transform 0.35s ease;
-  z-index: -1;
-}
 
-.social-slide:hover::before {
-  transform: translateY(0);
-}
 
-.social-slide svg {
-  transition: color 0.35s ease;
-}
-
-/* ===============================
-   SOCIAL ICONS (PRO LEVEL)
-   =============================== */
+/* ===================================
+   SOCIAL ICONS PRO
+=================================== */
 
 .social-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 9999px;
-  background: hsl(var(--background));
-  border: 1px solid hsl(var(--border));
-  color: hsl(var(--foreground));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: all 0.3s ease;
+
+  width:36px;
+
+  height:36px;
+
+  border-radius:9999px;
+
+  background:hsl(var(--background));
+
+  border:1px solid hsl(var(--border));
+
+  color:hsl(var(--foreground));
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:14px;
+
+  transition:all .35s var(--ease-premium);
+
 }
 
-/* subtle lift */
+
+
+/* Lift Effect */
+
 .social-icon:hover {
-  transform: translateY(-2px);
-  color: white;
+
+  transform:translateY(-3px);
+
+  color:white;
+
 }
 
-/* Brand hover colors */
+
+
+/* Brand Colors */
+
 .social-icon.facebook:hover {
-  background: #4267b2;
-  border-color: #4267b2;
+
+  background:#4267b2;
+  border-color:#4267b2;
+
 }
 
 .social-icon.twitter:hover {
-  background: #1da1f2;
-  border-color: #1da1f2;
+
+  background:#1da1f2;
+  border-color:#1da1f2;
+
 }
 
 .social-icon.linkedin:hover {
-  background: #0077b5;
-  border-color: #0077b5;
+
+  background:#0077b5;
+  border-color:#0077b5;
+
 }
 
 .social-icon.google:hover {
-  background: #db4437;
-  border-color: #db4437;
+
+  background:#db4437;
+  border-color:#db4437;
+
 }
 
-/* Hide scrollbar but keep scrolling */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+
+
+/* ===================================
+   LOADER IMPROVEMENTS
+=================================== */
+
+.loader-blur {
+
+  backdrop-filter:blur(12px);
+
 }
+
+
+
+/* ===================================
+   SMOOTH IMAGE RENDERING
+=================================== */
+
+img {
+
+  image-rendering:auto;
+
+}
+
+
+
+/* ===================================
+   SCROLLBAR HIDE
+=================================== */
+
+.scrollbar-hide::-webkit-scrollbar {
+
+  display:none;
+
+}
+
 .scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+  -ms-overflow-style:none;
+
+  scrollbar-width:none;
+
+}
+
+
+
+/* ===================================
+   AWWWARDS SMOOTH TRANSITIONS
+=================================== */
+
+a,
+button {
+
+  transition:
+
+  transform .3s var(--ease-premium),
+
+  opacity .3s var(--ease-premium),
+
+  background .3s var(--ease-premium),
+
+  color .3s var(--ease-premium),
+
+  border .3s var(--ease-premium);
+
+}
+
+
+
+/* ===================================
+   PERFORMANCE BOOST
+=================================== */
+
+canvas {
+
+  pointer-events:none;
+
 }
