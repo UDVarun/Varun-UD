@@ -32,14 +32,17 @@ export default function Hero() {
     if (!haloRef.current) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
+
     haloRef.current.style.setProperty(
       "--hx",
       `${e.clientX - rect.left}px`
     );
+
     haloRef.current.style.setProperty(
       "--hy",
       `${e.clientY - rect.top}px`
     );
+
     haloRef.current.style.opacity = "1";
   };
 
@@ -51,8 +54,16 @@ export default function Hero() {
   /* Image light mask */
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--x", `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty("--y", `${e.clientY - rect.top}px`);
+
+    e.currentTarget.style.setProperty(
+      "--x",
+      `${e.clientX - rect.left}px`
+    );
+
+    e.currentTarget.style.setProperty(
+      "--y",
+      `${e.clientY - rect.top}px`
+    );
   };
 
   return (
@@ -107,7 +118,6 @@ export default function Hero() {
                 onMouseLeave={handleNameLeave}
                 className="relative inline-block"
               >
-                {/* Cursor halo */}
                 <span
                   ref={haloRef}
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
@@ -117,7 +127,6 @@ export default function Hero() {
                   }}
                 />
 
-                {/* Name */}
                 <span
                   className="
                     name-jello
@@ -135,32 +144,39 @@ export default function Hero() {
               <div className="text-[0.77em] font-medium text-foreground/90 pb-4">
                 Full-Stack Software Engineer
               </div>
-              
+
               <section className="text-[0.385em] font-normal text-muted-foreground">
-            building scalable, secure, production-ready systems.
- 
+                building scalable, secure, production-ready systems.
               </section>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground leading-relaxed text-[15.5px] sm:text-base">
-             Focused on building high-performance, production-ready applications across web,
-              mobile, and cloud — helping businesses turn ideas into scalable, reliable software.
+              Focused on building high-performance, production-ready applications across web,
+              mobile, and cloud — helping businesses turn ideas into scalable,
+              reliable software.
             </p>
 
             {/* CTA */}
             <div className="mt-10 flex flex-wrap items-center gap-6">
+
+              {/* LIGHT MODE */}
               <a
-                href="#contact"
+                href="/Varun-CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-full border border-black/30 px-6 py-3 text-sm font-medium text-black transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-black hover:text-white dark:hidden"
               >
-                Get in touch →
+                Download CV ↓
               </a>
 
+              {/* DARK MODE */}
               <a
-                href="#contact"
+                href="/Varun-CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group hidden dark:inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-white hover:text-black"
               >
-                Get in touch →
+                Download CV ↓
               </a>
 
               {/* SOCIAL */}
@@ -168,13 +184,16 @@ export default function Hero() {
                 <SocialIcon href="https://www.facebook.com/varun.ud.31" hover="hover:bg-[#4267B2]">
                   <Facebook size={16} />
                 </SocialIcon>
+
                 <SocialIcon href="https://www.linkedin.com/in/varunud" hover="hover:bg-[#0077B5]">
                   <Linkedin size={16} />
                 </SocialIcon>
+
                 <SocialIcon href="https://github.com/UDVarun" hover="hover:bg-[#333]">
                   <Github size={16} />
                 </SocialIcon>
               </div>
+
             </div>
           </div>
 
@@ -183,8 +202,3 @@ export default function Hero() {
     </section>
   );
 }
-
-
-
-
-
