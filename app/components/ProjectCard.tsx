@@ -8,7 +8,7 @@ interface Props {
   title: string;
   description: string;
   image: string;
-  video: string;
+  video?: string;
   tech?: string[];
   previewUrl?: string;
   githubUrl?: string;
@@ -170,7 +170,7 @@ export default function ProjectCard({
 
         >
 
-          <source src={video} type="video/mp4"/>
+         {video && <source src={video} type="video/mp4"/>}
 
         </video>
 
