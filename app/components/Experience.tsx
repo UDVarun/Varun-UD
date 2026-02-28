@@ -71,7 +71,7 @@ const education: ExperienceItem[] = [
     side: "right",
     title: "B.E. in Computer Science & Engineering",
     company: "Don Bosco Institute of Technology",
-    period: "2021 – 2024",
+    period: "2022 – 2025",
     icon: GraduationCap,
     description:
       "Academic training focused on software engineering fundamentals, databases, operating systems, networking, and modern application development.",

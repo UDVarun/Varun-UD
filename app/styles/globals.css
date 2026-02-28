@@ -4,7 +4,7 @@
 
 
 /* ===================================
-   AWWWARDS MOTION VARIABLES.
+   AWWWARDS MOTION VARIABLES
 =================================== */
 
 :root {
@@ -12,28 +12,7 @@
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 
-}
-
-
-/* ===================================
-   THEME VARIABLES
-=================================== */
-
-/* Light mode */
-
-:root {
-
-  --background: 0 0% 100%;
-  --foreground: 222 47% 11%;
-  --muted: 215 16% 47%;
-  --primary: 217 91% 60%;
-  --border: 214 32% 91%;
-
-}
-
-/* Dark mode */
-
-.dark {
+  /* DARK THEME COLORS */
 
   --background: 222 47% 4%;
   --foreground: 210 40% 98%;
@@ -44,74 +23,183 @@
 }
 
 
-
 /* ===================================
    BASE STYLES
 =================================== */
 
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
 
-body {
+  html {
+    scroll-behavior: smooth;
+  }
 
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  body {
 
-  overflow-x: hidden;
+    background-color: black;
+    color: white;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 
-  text-rendering: optimizeLegibility;
-  
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-}
+    text-rendering: optimizeLegibility;
 
-
-/* Smooth Selection */
-
-::selection {
-
-  background: white;
-  color: black;
+  }
 
 }
 
 
+/* ===================================
+   FORCE DARK MODE
+=================================== */
 
-/* Premium Link Spacing */
+section,
+main,
+footer {
 
-nav a {
-  letter-spacing: 0.06em;
+  background:black;
+
 }
 
-header a {
-  letter-spacing: 0.02em;
+
+/* ===================================
+   FIX WHITE CARDS
+=================================== */
+
+.bg-white,
+.bg-white\/70,
+.bg-white\/80 {
+
+  background: rgba(0,0,0,0.55) !important;
+
+}
+
+.text-black,
+.text-black\/70 {
+
+  color:white !important;
+
+}
+
+.border-black\/10,
+.border-black\/20,
+.border-black\/30 {
+
+  border-color: rgba(255,255,255,0.15) !important;
+
 }
 
 
 
 /* ===================================
-   SCROLL PERFORMANCE OPTIMIZATION
+   NAVBAR FIX
+=================================== */
+
+header {
+
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+
+}
+
+
+
+/* ===================================
+   CONTACT FORM FIX
+=================================== */
+
+input,
+textarea {
+
+  background: rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.2);
+
+  color:white;
+
+}
+
+input::placeholder,
+textarea::placeholder {
+
+  color:rgba(255,255,255,0.45);
+
+}
+
+
+
+/* ===================================
+   SOCIAL ICONS
+=================================== */
+
+.social-icon {
+
+  width:36px;
+  height:36px;
+
+  border-radius:9999px;
+
+  background:black;
+  border:1px solid rgba(255,255,255,0.3);
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:all .35s var(--ease-premium);
+
+}
+
+.social-icon:hover {
+
+  transform:translateY(-3px);
+
+}
+
+
+
+/* ===================================
+   SELECTION
+=================================== */
+
+::selection {
+
+  background:white;
+  color:black;
+
+}
+
+
+
+/* ===================================
+   LINK SPACING
+=================================== */
+
+nav a {
+  letter-spacing:0.06em;
+}
+
+header a {
+  letter-spacing:0.02em;
+}
+
+
+
+/* ===================================
+   PERFORMANCE OPTIMIZATION
 =================================== */
 
 * {
 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
 
 }
 
-
-/* Prevent animation lag */
-
-.will-change-transform {
-  will-change: transform;
-}
-
-.will-change-opacity {
-  will-change: opacity;
+canvas {
+  pointer-events:none;
 }
 
 
@@ -122,17 +210,12 @@ header a {
 
 @keyframes jello-smooth {
 
-  0% { transform: scale3d(1,1,1); }
-
-  30% { transform: scale3d(1.08,0.94,1); }
-
-  45% { transform: scale3d(0.96,1.05,1); }
-
-  60% { transform: scale3d(1.04,0.98,1); }
-
-  75% { transform: scale3d(0.99,1.02,1); }
-
-  100% { transform: scale3d(1,1,1); }
+  0% { transform:scale3d(1,1,1); }
+  30% { transform:scale3d(1.08,0.94,1); }
+  45% { transform:scale3d(0.96,1.05,1); }
+  60% { transform:scale3d(1.04,0.98,1); }
+  75% { transform:scale3d(0.99,1.02,1); }
+  100% { transform:scale3d(1,1,1); }
 
 }
 
@@ -145,20 +228,19 @@ header a {
 
 .name-jello:hover {
 
-  animation:jello-smooth 0.9s var(--ease-smooth);
+  animation:jello-smooth .9s var(--ease-smooth);
 
 }
 
 
 
 /* ===================================
-   SHIMMER EFFECT
+   SHIMMER
 =================================== */
 
 @keyframes shimmer {
 
   0% { background-position:0% 50%; }
-
   100% { background-position:200% 50%; }
 
 }
@@ -172,28 +254,14 @@ header a {
 
 
 /* ===================================
-   CTA GLOW EFFECT
+   CTA GLOW
 =================================== */
 
 @keyframes glowPulse {
 
-  0% {
-
-    box-shadow:0 0 0px rgba(255,255,255,0.25);
-
-  }
-
-  50% {
-
-    box-shadow:0 0 22px rgba(255,255,255,0.45);
-
-  }
-
-  100% {
-
-    box-shadow:0 0 0px rgba(255,255,255,0.25);
-
-  }
+  0% { box-shadow:0 0 0px rgba(255,255,255,0.25); }
+  50% { box-shadow:0 0 22px rgba(255,255,255,0.45); }
+  100% { box-shadow:0 0 0px rgba(255,255,255,0.25); }
 
 }
 
@@ -207,29 +275,19 @@ header a {
 .cta-glow::before {
 
   content:"";
-
   position:absolute;
-
   inset:-2px;
 
   border-radius:inherit;
 
   background:
-
   radial-gradient(
-
-    60% 60% at 50% 50%,
-
-    rgba(255,255,255,0.35),
-
-    transparent 70%
-
-  );
+  60% 60% at 50% 50%,
+  rgba(255,255,255,0.35),
+  transparent 70%);
 
   opacity:0;
-
-  transition:opacity .3s var(--ease-premium);
-
+  transition:.3s var(--ease-premium);
   z-index:-1;
 
 }
@@ -242,212 +300,70 @@ header a {
 
 .cta-glow-idle {
 
-  animation:glowPulse 3.2s ease-in-out infinite;
+  animation:glowPulse 3s infinite;
 
 }
 
 
 
 /* ===================================
-   CTA + SOCIAL SLIDE EFFECT
-=================================== */
-
-.cta-slide,
-.social-slide {
-
-  position:relative;
-
-  overflow:hidden;
-
-  z-index:0;
-
-}
-
-.cta-slide::before,
-.social-slide::before {
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:currentColor;
-
-  transform:translateY(100%);
-
-  transition:transform .4s var(--ease-premium);
-
-  z-index:-1;
-
-}
-
-.cta-slide:hover::before,
-.social-slide:hover::before {
-
-  transform:translateY(0);
-
-}
-
-.cta-slide span,
-.cta-slide svg,
-.social-slide svg {
-
-  transition:color .35s var(--ease-premium);
-
-}
-
-
-
-/* ===================================
-   SOCIAL ICONS PRO
-=================================== */
-
-.social-icon {
-
-  width:36px;
-
-  height:36px;
-
-  border-radius:9999px;
-
-  background:hsl(var(--background));
-
-  border:1px solid hsl(var(--border));
-
-  color:hsl(var(--foreground));
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:14px;
-
-  transition:all .35s var(--ease-premium);
-
-}
-
-
-
-/* Lift Effect */
-
-.social-icon:hover {
-
-  transform:translateY(-3px);
-
-  color:white;
-
-}
-
-
-
-/* Brand Colors */
-
-.social-icon.facebook:hover {
-
-  background:#4267b2;
-  border-color:#4267b2;
-
-}
-
-.social-icon.twitter:hover {
-
-  background:#1da1f2;
-  border-color:#1da1f2;
-
-}
-
-.social-icon.linkedin:hover {
-
-  background:#0077b5;
-  border-color:#0077b5;
-
-}
-
-.social-icon.google:hover {
-
-  background:#db4437;
-  border-color:#db4437;
-
-}
-
-
-
-/* ===================================
-   LOADER IMPROVEMENTS
-=================================== */
-
-.loader-blur {
-
-  backdrop-filter:blur(12px);
-
-}
-
-
-
-/* ===================================
-   SMOOTH IMAGE RENDERING
-=================================== */
-
-img {
-
-  image-rendering:auto;
-
-}
-
-
-
-/* ===================================
-   SCROLLBAR HIDE
-=================================== */
-
-.scrollbar-hide::-webkit-scrollbar {
-
-  display:none;
-
-}
-
-.scrollbar-hide {
-
-  -ms-overflow-style:none;
-
-  scrollbar-width:none;
-
-}
-
-
-
-/* ===================================
-   AWWWARDS SMOOTH TRANSITIONS
+   SMOOTH TRANSITIONS
 =================================== */
 
 a,
 button {
 
-  transition:
-
-  transform .3s var(--ease-premium),
-
-  opacity .3s var(--ease-premium),
-
-  background .3s var(--ease-premium),
-
-  color .3s var(--ease-premium),
-
-  border .3s var(--ease-premium);
+transition:
+transform .3s var(--ease-premium),
+background .3s var(--ease-premium),
+color .3s var(--ease-premium),
+border .3s var(--ease-premium);
 
 }
 
 
 
 /* ===================================
-   PERFORMANCE BOOST
+   SCROLLBAR
 =================================== */
 
-canvas {
+.scrollbar-hide::-webkit-scrollbar {
+display:none;
+}
 
-  pointer-events:none;
+.scrollbar-hide {
+-ms-overflow-style:none;
+scrollbar-width:none;
+}
+
+
+
+/* ===================================
+   LENIS
+=================================== */
+
+html.lenis {
+height:auto;
+}
+
+.lenis.lenis-smooth {
+scroll-behavior:auto;
+}
+
+.lenis.lenis-stopped {
+overflow:hidden;
+}
+
+
+
+/* ===================================
+   MOBILE FIXES
+=================================== */
+
+@media (max-width:768px){
+
+body{
+font-size:15px;
+}
 
 }

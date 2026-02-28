@@ -26,44 +26,149 @@ const skillGroups = [
 ]
 
 export default function Skills() {
-  return (
-    <section id="skills" className="py-24 bg-muted/30">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-center mb-12"
-        >
-          Skills
-        </motion.h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group, i) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="border rounded-2xl p-6 bg-background hover:shadow-lg transition"
-            >
-              <h3 className="font-semibold mb-4">{group.title}</h3>
-              <ul className="space-y-2 text-muted">
-                {group.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="hover:text-primary transition"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+  return (
+
+<section
+id="skills"
+className="
+py-32
+bg-black
+relative
+"
+>
+
+<div className="max-w-6xl mx-auto px-6">
+
+{/* HEADER */}
+
+<motion.h2
+initial={{ opacity: 0, y: 40 }}
+whileInView={{ opacity: 1, y: 0 }}
+viewport={{ once: true }}
+transition={{ duration: 0.8 }}
+className="
+text-4xl
+md:text-5xl
+font-semibold
+text-center
+mb-16
+tracking-tight
+text-white
+"
+>
+
+Skills
+
+</motion.h2>
+
+
+{/* GRID */}
+
+<div className="
+grid
+sm:grid-cols-2
+lg:grid-cols-3
+gap-8
+">
+
+
+{skillGroups.map((group, i) => (
+
+<motion.div
+
+key={group.title}
+
+initial={{ opacity: 0, y: 40 }}
+whileInView={{ opacity: 1, y: 0 }}
+viewport={{ once: true }}
+
+transition={{
+duration: 0.6,
+delay: i * 0.1,
+}}
+
+className="
+
+rounded-3xl
+
+border
+border-white/10
+
+bg-white/5
+
+backdrop-blur-md
+
+p-8
+
+transition-all
+duration-500
+
+hover:-translate-y-2
+hover:border-white/30
+
+"
+
+>
+
+
+{/* TITLE */}
+
+<h3 className="
+text-lg
+font-semibold
+mb-6
+text-white
+">
+
+{group.title}
+
+</h3>
+
+
+
+{/* SKILLS */}
+
+<ul className="space-y-3">
+
+{group.skills.map((skill) => (
+
+<li
+
+key={skill}
+
+className="
+
+text-white/70
+
+transition-all
+duration-300
+
+hover:text-white
+hover:translate-x-1
+
+"
+
+>
+
+{skill}
+
+</li>
+
+))}
+
+</ul>
+
+</motion.div>
+
+))}
+
+</div>
+
+</div>
+
+</section>
+
   )
+
 }
